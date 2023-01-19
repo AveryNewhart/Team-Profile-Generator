@@ -2,7 +2,7 @@ const inquirer = require('inquirer');
 const fs = require('fs');
 
 // manager questions
-const managerQuestions = () {
+const managerQuestions = () => {
     return inquirer.prompt
 ([
     {
