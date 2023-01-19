@@ -2,8 +2,9 @@ const inquirer = require('inquirer');
 const fs = require('fs');
 
 // manager questions
-const managerQuestions =
-[
+const managerQuestions = () {
+    return inquirer.prompt
+([
     {
         type: 'input',
       message: 'Enter Name:',
@@ -52,8 +53,13 @@ const managerQuestions =
             }
         }
     },
-]
-
+])
+    .then (managerContent => {
+        const {managername, managerid, manageremail, office} = managerContent;
+        const manager = new Manager (managername, managerid, manageremail, office);
+        theTeam.push(manager);
+    })
+}
 // menu to add members or end
 const menu = 
 [
@@ -204,3 +210,15 @@ const internQuestions =
     },
 ]
 
+const writeFile = data => {
+    fs.writeFile("../html/index.html", data, err=> {
+        if(err) {
+            console.log(err)
+        } else {
+            console.log("Team info has been logged!")
+        }
+    })
+};
+
+managerQuestions()
+    .then()
