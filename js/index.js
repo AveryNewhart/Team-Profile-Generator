@@ -1,6 +1,17 @@
 const inquirer = require('inquirer');
 const fs = require('fs');
 
+// impoting the staff
+const Employee = require('../class/employee');
+const Intern = require('../class/intern');
+const Manager = require('../class/manager');
+const Engineer = require('../class/engineer');
+
+const generateHTML = require("../newCon/generateHTML");
+
+
+theTeam = [];
+
 // manager questions
 const managerQuestions = () => {
     return inquirer.prompt
@@ -60,9 +71,10 @@ const managerQuestions = () => {
         theTeam.push(manager);
     })
 }
-// menu to add members or end
-const menu = 
-[
+//engineer questions
+const newEmployeeQuestions = () => {
+    return inquirer.prompt
+([
     {
         type: 'list',
         message: 'Would you like to add an Enginner, Intern, or would you like to finish?',
@@ -76,15 +88,10 @@ const menu =
             }
         }
     },
-]
-
-//engineer questions
-const engineerQuestions =
-[
     {
         type: 'input',
       message: 'Enter Name:',
-      name: 'engineername',
+      name: 'ename',
       validate: (value) => { 
         if(value){
             return true;
@@ -96,7 +103,7 @@ const engineerQuestions =
     {
         type: 'input',
         message: 'Enter Employee ID:',
-        name: 'engineerid',
+        name: 'eid',
         validate: (value) => {
             if(value){
                 return true;
@@ -108,7 +115,7 @@ const engineerQuestions =
     {
         type: 'input',
         message: 'Enter E-Mail Address:',
-        name: 'engineeremail',
+        name: 'eemail',
         validate: (value) => {
             if(value){
                 return true;
@@ -118,6 +125,7 @@ const engineerQuestions =
         }
     },
     {
+        when: (input) => input.question === "Engineer",
         type: 'input',
         message: 'Enter Github Username:',
         name: 'github',
@@ -130,60 +138,7 @@ const engineerQuestions =
         }
     },
     {
-        type: 'list',
-        message: 'Would you like to add any more team members?',
-        name: 'engineercontinue',
-        choices: ['yes', 'no'],
-        validate: (value) => {
-            if(value){
-                return true;
-            } else {
-                console.log("input value to move on")
-            }
-        }
-    },
-]
-
-// intern questions
-const internQuestions =
-[
-    {
-        type: 'input',
-      message: 'Enter Name:',
-      name: 'internname',
-      validate: (value) => { 
-        if(value){
-            return true;
-        } else {
-            console.log("input value to move on")
-        }
-    }
-    },
-    {
-        type: 'input',
-        message: 'Enter Employee ID:',
-        name: 'internid',
-        validate: (value) => {
-            if(value){
-                return true;
-            } else {
-                console.log("input value to move on")
-            }
-        }
-    },
-    {
-        type: 'input',
-        message: 'Enter E-Mail Address:',
-        name: 'internemail',
-        validate: (value) => {
-            if(value){
-                return true;
-            } else {
-                console.log("input value to move on")
-            }
-        }
-    },
-    {
+        when: (input) => input.question === "Intern",
         type: 'input',
         message: 'Enter Your School:',
         name: 'school',
@@ -196,19 +151,33 @@ const internQuestions =
         }
     },
     {
-        type: 'list',
-        message: 'Would you like to add any more team members?',
-        name: 'interncontinue',
-        choices: ['yes', 'no'],
-        validate: (value) => {
-            if(value){
-                return true;
-            } else {
-                console.log("input value to move on")
-            }
+        type: "confirm",
+        name:"more",
+        message:"Would you like to add more team members?",
+    }
+])
+.then(function(employeeData) {
+    let {ename, eid, eemail, github, school, more} = employeeData;
+    let employee;
+
+        if (question == "Engineer"){
+            employee = new Engineer (ename, eid, eemail, github);
+        } else if (question == "Intern") {
+            employee = new Intern (ename, eid, eemail, school);
         }
-    },
-]
+
+        theTeam.push(employee);
+
+        if (more) {
+        return newEmployeeQuestions(theTeam);
+        } else {
+        return theTeam;
+        }
+    })
+}
+
+
+
 
 const writeFile = data => {
     fs.writeFile("../html/index.html", data, err=> {
@@ -221,4 +190,19 @@ const writeFile = data => {
 };
 
 managerQuestions()
-    .then()
+    .then(newEmployeeQuestions)
+
+
+// if (continue) {
+//     return newEmployeeQuestions()
+// }
+    
+
+    // async function callInquirers() {
+    //     const inq1 = await inquirer.prompt([...]);
+    //     const inq2 = await inquirer.prompt([...]);
+    
+    //     // do stuff with results inq1 and inq2
+    // }
+
+    // https://www.npmjs.com/package/multi-prompt
