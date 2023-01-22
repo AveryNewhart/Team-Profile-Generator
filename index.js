@@ -2,12 +2,12 @@ const inquirer = require('inquirer');
 const fs = require('fs');
 
 // impoting the staff
-const Employee = require('../class/employee');
-const Intern = require('../class/intern');
-const Manager = require('../class/manager');
-const Engineer = require('../class/engineer');
+const Employee = require('./class/employee');
+const Intern = require('./class/intern');
+const Manager = require('./class/manager');
+const Engineer = require('./class/engineer');
 
-const generateHTML = require("../newCon/generateHTML");
+const generateHTML = require("./newCon/generateHTML");
 
 
 theTeam = [];
@@ -78,15 +78,8 @@ const newEmployeeQuestions = () => {
     {
         type: 'list',
         message: 'Would you like to add an Enginner, Intern, or would you like to finish?',
-        name: 'question',
-        choices: ['Engineer', 'Intern', 'none'],
-        validate: (value) => { 
-            if(value){
-                return true;
-            } else {
-                console.log("input value to move on")
-            }
-        }
+        name: 'role',
+        choices: ['Engineer', 'Intern', 'None'],
     },
     {
         type: 'input',
@@ -125,7 +118,7 @@ const newEmployeeQuestions = () => {
         }
     },
     {
-        when: (input) => input.question === "Engineer",
+        when: (input) => input.role === "Engineer",
         type: 'input',
         message: 'Enter Github Username:',
         name: 'github',
@@ -138,7 +131,7 @@ const newEmployeeQuestions = () => {
         }
     },
     {
-        when: (input) => input.question === "Intern",
+        when: (input) => input.role === "Intern",
         type: 'input',
         message: 'Enter Your School:',
         name: 'school',
@@ -157,13 +150,15 @@ const newEmployeeQuestions = () => {
     }
 ])
 .then(function(employeeData) {
-    let {name, id, email, github, school, more} = employeeData;
+    let {name, id, email, role, github, school, more} = employeeData;
     let employee;
 
-        if (question == "Engineer"){
+        if (role == "Engineer"){
             employee = new Engineer (name, id, email, github);
-        } else if (question == "Intern") {
+        } else if (role == "Intern") {
             employee = new Intern (name, id, email, school);
+        } else if (role == "None"){
+            console.log("Team info has been logged!")
         }
 
         theTeam.push(employee);
@@ -180,7 +175,7 @@ const newEmployeeQuestions = () => {
 
 
 const writeFile = data => {
-    fs.writeFile("../html/index.html", data, err=> {
+    fs.writeFile("./html/index.html", data, err=> {
         if(err) {
             console.log(err)
         } else {
