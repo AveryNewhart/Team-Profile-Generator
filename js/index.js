@@ -19,7 +19,7 @@ const managerQuestions = () => {
     {
         type: 'input',
       message: 'Enter Name:',
-      name: 'managername',
+      name: 'name',
       validate: (value) => { 
         if(value){
             return true;
@@ -31,7 +31,7 @@ const managerQuestions = () => {
     {
         type: 'input',
         message: 'Enter Employee ID:',
-        name: 'managerid',
+        name: 'id',
         validate: (value) => {
             if(value){
                 return true;
@@ -43,7 +43,7 @@ const managerQuestions = () => {
     {
         type: 'input',
         message: 'Enter E-Mail Address:',
-        name: 'manageremail',
+        name: 'email',
         validate: (value) => {
             if(value){
                 return true;
@@ -66,8 +66,8 @@ const managerQuestions = () => {
     },
 ])
     .then (managerContent => {
-        const {managername, managerid, manageremail, office} = managerContent;
-        const manager = new Manager (managername, managerid, manageremail, office);
+        const {name, id, email, office} = managerContent;
+        const manager = new Manager (name, id, email, office);
         theTeam.push(manager);
     })
 }
@@ -91,7 +91,7 @@ const newEmployeeQuestions = () => {
     {
         type: 'input',
       message: 'Enter Name:',
-      name: 'ename',
+      name: 'name',
       validate: (value) => { 
         if(value){
             return true;
@@ -103,7 +103,7 @@ const newEmployeeQuestions = () => {
     {
         type: 'input',
         message: 'Enter Employee ID:',
-        name: 'eid',
+        name: 'id',
         validate: (value) => {
             if(value){
                 return true;
@@ -115,7 +115,7 @@ const newEmployeeQuestions = () => {
     {
         type: 'input',
         message: 'Enter E-Mail Address:',
-        name: 'eemail',
+        name: 'email',
         validate: (value) => {
             if(value){
                 return true;
@@ -157,11 +157,11 @@ const newEmployeeQuestions = () => {
     }
 ])
 .then(function(employeeData) {
-    let {ename, eid, eemail, github, school, more} = employeeData;
+    let {name, id, email, github, school, more} = employeeData;
     let employee;
 
         if (question == "Engineer"){
-            employee = new Engineer (ename, eid, eemail, github);
+            employee = new Engineer (name, id, email, github);
         } else if (question == "Intern") {
             employee = new Intern (ename, eid, eemail, school);
         }
@@ -192,17 +192,3 @@ const writeFile = data => {
 managerQuestions()
     .then(newEmployeeQuestions)
 
-
-// if (continue) {
-//     return newEmployeeQuestions()
-// }
-    
-
-    // async function callInquirers() {
-    //     const inq1 = await inquirer.prompt([...]);
-    //     const inq2 = await inquirer.prompt([...]);
-    
-    //     // do stuff with results inq1 and inq2
-    // }
-
-    // https://www.npmjs.com/package/multi-prompt
