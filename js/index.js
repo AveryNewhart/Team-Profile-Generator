@@ -163,7 +163,7 @@ const newEmployeeQuestions = () => {
         if (question == "Engineer"){
             employee = new Engineer (name, id, email, github);
         } else if (question == "Intern") {
-            employee = new Intern (ename, eid, eemail, school);
+            employee = new Intern (name, id, email, school);
         }
 
         theTeam.push(employee);
@@ -191,4 +191,13 @@ const writeFile = data => {
 
 managerQuestions()
     .then(newEmployeeQuestions)
+    .then(function(theTeam) {
+        return generateHTML(theTeam);
+    })
+    .then(function(HTML) {
+        return writeFile(HTML);
+    })
+    .catch(function(err) {
+        console.log(err);
+    })
 
