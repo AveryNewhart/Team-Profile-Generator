@@ -10,7 +10,7 @@ const Engineer = require('./class/engineer');
 const generateHTML = require("./newCon/generateHTML");
 
 
-theTeam = [];
+const theTeam = [];
 
 // manager questions
 const managerQuestions = () => {
@@ -157,8 +157,6 @@ const newEmployeeQuestions = () => {
             employee = new Engineer (name, id, email, github);
         } else if (role == "Intern") {
             employee = new Intern (name, id, email, school);
-        } else if (role == "None"){
-            console.log("Team info has been logged!")
         }
 
         theTeam.push(employee);
@@ -174,7 +172,7 @@ const newEmployeeQuestions = () => {
 
 
 
-const writeFile = data => {
+const writeFile = data =>  {
     fs.writeFile("./html/index.html", data, err=> {
         if(err) {
             console.log(err)

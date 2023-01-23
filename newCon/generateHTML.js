@@ -68,7 +68,7 @@ function generateHTML(data) {
     const emptyCards = emptySpot.join('')
 
     const createTeam = generateTeamFile(emptyCards);
-    createTeam;
+    return createTeam;
 }
 
 
