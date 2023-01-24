@@ -1,0 +1,12 @@
+.headTxt {
+    display: flex;
+    justify-content: center;
+    align-items: var();
+    background-color: black;
+    padding-bottom: 2vh;
+    color: white;
+}
+
+body {
+    background-color: lightgray;
+}

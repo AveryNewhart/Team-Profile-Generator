@@ -1,4 +1,4 @@
-const Employee = require('./Employee')
+const Employee = require('./Employee');
 
 class Manager extends Employee {
     constructor (name, id, email, office) {
@@ -9,6 +9,10 @@ class Manager extends Employee {
 
     getOffice() {
         return this.office;
+    }
+
+    getRole() {
+        return "Manager";
     }
 }
 

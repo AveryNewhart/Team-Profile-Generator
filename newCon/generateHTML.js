@@ -8,7 +8,7 @@ function generateManager(manager) {
         <div class="card-body">
             <p>ID: ${manager.id}</p>
             <p>Email: <a href="mailto:${manager.email}">${manager.email}</a></p>
-            <p>Office Number: ${manager.officeNumber}</p>
+            <p>Office Number: ${manager.office}</p>
         </div>
     </div>
 </div>`
@@ -19,12 +19,12 @@ function generateEngineer(engineer) {
     <div class="card h-100">
         <div class="card-header text-bg-primary">
             <h3>${engineer.name}</h3>
-            <h4>Manager</h4>
+            <h4>Engineer</h4>
         </div>
         <div class="card-body">
             <p>ID: ${engineer.id}</p>
             <p>Email: <a href="mailto:${engineer.email}">${engineer.email}</a></p>
-            <p>Office Number: ${engineer.github}</p>
+            <p>Github: <a href="https://github.com/${engineer.github}">${engineer.github}</a></p>
         </div>
     </div>
 </div>`
@@ -35,12 +35,12 @@ function generateIntern(intern) {
     <div class="card h-100">
         <div class="card-header text-bg-primary">
             <h3>${intern.name}</h3>
-            <h4>Manager</h4>
+            <h4>Intern</h4>
         </div>
         <div class="card-body">
             <p>ID: ${intern.id}</p>
             <p>Email: <a href="mailto:${intern.email}">${intern.email}</a></p>
-            <p>Office Number: ${intern.school}</p>
+            <p>School: ${intern.school}</p>
         </div>
     </div>
 </div>`
@@ -101,4 +101,4 @@ return `<!DOCTYPE html>
 
 }
 
-module.exports = generateHTML
+module.exports = generateHTML;

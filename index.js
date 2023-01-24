@@ -79,7 +79,7 @@ const newEmployeeQuestions = () => {
         type: 'list',
         message: 'Would you like to add an Enginner, Intern, or would you like to finish?',
         name: 'role',
-        choices: ['Engineer', 'Intern', 'None'],
+        choices: ["Engineer", "Intern"],
     },
     {
         type: 'input',
@@ -149,23 +149,23 @@ const newEmployeeQuestions = () => {
         message:"Would you like to add more team members?",
     }
 ])
-.then(function(employeeData) {
+.then(function(employeeData){
     let {name, id, email, role, github, school, more} = employeeData;
     let employee;
 
-        if (role == "Engineer"){
-            employee = new Engineer (name, id, email, github);
-        } else if (role == "Intern") {
-            employee = new Intern (name, id, email, school);
-        }
+    if (role == "Engineer"){
+        employee = new Engineer (name, id, email, github);
+    } else if (role == "Intern") {
+        employee = new Intern (name, id, email, school);
+    }
 
-        theTeam.push(employee);
+    theTeam.push(employee);
 
-        if (more) {
+    if (more) {
         return newEmployeeQuestions(theTeam);
-        } else {
+    } else {
         return theTeam;
-        }
+    }
     })
 }
 
@@ -173,7 +173,7 @@ const newEmployeeQuestions = () => {
 
 
 const writeFile = data =>  {
-    fs.writeFile("./html/index.html", data, err=> {
+    fs.writeFile("./html/index.html", data, err => {
         if(err) {
             console.log(err)
         } else {
