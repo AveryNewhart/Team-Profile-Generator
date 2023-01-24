@@ -1,31 +1,31 @@
 const Engineer = require('../class/engineer')
 
 test('new Engineer will return user input name', () => {
-    test = new Engineer('John', 3, 'portojohn77@gmail.com', 'DaBoyJohn');
+    const test = new Engineer('John', 3, 'portojohn77@gmail.com', 'DaBoyJohn')
 
-    expect(test.getName()).toEqual("John");
+    expect(test.getName()).toBe('John')
 })
 
 test('new Engineer will return user input id', () => {
-    test = new Engineer('John', 3, 'portojohn77@gmail.com', 'DaBoyJohn');
+    const test = new Engineer('John', 3, 'portojohn77@gmail.com', 'DaBoyJohn')
 
-    expect(test.getName()).toEqual(3);
+    expect(test.getId()).toBe(3)
 })
 
 test('new Engineer will return user input email', () => {
-    test = new Engineer('John', 3, 'portojohn77@gmail.com', 'DaBoyJohn');
+   const test = new Engineer('John', 3, 'portojohn77@gmail.com', 'DaBoyJohn')
 
-    expect(test.getName()).toEqual("portojohn77@gmail.com");
+    expect(test.getEmail()).toBe('portojohn77@gmail.com')
 })
 
 test('new Engineer will return user input office number', () => {
-    test = new Engineer('John', 3, 'portojohn77@gmail.com', 'DaBoyJohn');
+    const test = new Engineer('John', 3, 'portojohn77@gmail.com', 'DaBoyJohn')
 
-    expect(test.getName()).toEqual('DaBoyJohn');
+    expect(test.getGithub()).toBe('DaBoyJohn')
 })
 
 test('new Engineer will return user role', () => {
-    test = new Engineer('John', 3, 'portojohn77@gmail.com', 'DaBoyJohn');
+    const test = new Engineer('John', 3, 'portojohn77@gmail.com', 'DaBoyJohn')
 
-    expect(test.getName()).toBe("Engineer");
+    expect(test.getRole()).toBe("Engineer")
 })
