@@ -16,6 +16,7 @@
   - You have to install node.
 
   ## Usage
+  - demo link
   - [teamgen.webm](https://user-images.githubusercontent.com/113143631/214470218-ebdd69f1-6a50-4213-9831-2613788873e7.webm)
 
 
