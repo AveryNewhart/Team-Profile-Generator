@@ -77,7 +77,7 @@ const newEmployeeQuestions = () => {
 ([
     {
         type: 'list',
-        message: 'Would you like to add an Enginner, Intern, or would you like to finish?',
+        message: 'Would you like to add an Enginner or Intern?',
         name: 'role',
         choices: ["Engineer", "Intern"],
     },
