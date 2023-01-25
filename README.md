@@ -16,7 +16,8 @@
   - You have to install node.
 
   ## Usage
-  - put link here
+  - [teamgen.webm](https://user-images.githubusercontent.com/113143631/214470218-ebdd69f1-6a50-4213-9831-2613788873e7.webm)
+
 
   ## License
   - license : MIT License ![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
